@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using PDFjet.NET;
+﻿using System.IO;
+using SparksPDF;
 
 namespace Testing
 {
@@ -11,7 +7,10 @@ namespace Testing
 	{
 		static void Main(string[] args)
 		{
-
+			var fs = new FileStream("test.pdf", FileMode.Create);
+			var document = new Document();
+			document.Write(fs);
+			fs.Close();
 		}
 	}
 }

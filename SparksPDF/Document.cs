@@ -1,11 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.IO;
 
 namespace SparksPDF
 {
 	public class Document
 	{
+		private Header Header { get; set; }
+
+		public Document()
+		{
+			Header = new Header();
+		}
+
+		public void Write(Stream stream)
+		{
+			stream.Position = 0;
+			Header.Write(stream);
+		}
 	}
 }
