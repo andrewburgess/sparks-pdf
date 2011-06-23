@@ -40,9 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DocumentObjects\Body.cs" />
+    <Compile Include="DocumentObjects\CrossReferenceTable.cs" />
     <Compile Include="Document.cs" />
-    <Compile Include="Header.cs" />
+    <Compile Include="DocumentObjects\Header.cs" />
+    <Compile Include="DocumentObjects\XRefEntry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DocumentObjects\Trailer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
