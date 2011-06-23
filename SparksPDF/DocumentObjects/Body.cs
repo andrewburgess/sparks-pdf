@@ -9,6 +9,8 @@ namespace SparksPDF.DocumentObjects
 		public Pages Pages { get; private set; }
 		public Outlines Outlines { get; private set; }
 
+		public 
+
 		public Body()
 		{
 			Catalog = new Catalog(1);
