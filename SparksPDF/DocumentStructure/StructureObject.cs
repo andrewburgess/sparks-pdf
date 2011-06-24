@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SparksPDF.DocumentStructure
 {
-	public abstract class StructureObject
+	public abstract class StructureObject : PDFObject
 	{
 		public const string KEY_TYPE = "/Type";
 		public int Position { get; protected set; }
@@ -34,8 +34,6 @@ namespace SparksPDF.DocumentStructure
 		{
 			return Position + " " + Generation + " obj";
 		}
-
-		public abstract List<byte> GetOutput();
 
 		public virtual string GetMinimalIndirectReference()
 		{

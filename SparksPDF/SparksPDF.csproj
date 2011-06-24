@@ -43,6 +43,7 @@
     <Compile Include="CoordinateSystems\A4.cs" />
     <Compile Include="DocumentObjects\MediaBox.cs" />
     <Compile Include="DocumentObjects\Rectangle.cs" />
+    <Compile Include="DocumentStructure\Info.cs" />
     <Compile Include="DocumentStructure\Page.cs" />
     <Compile Include="DocumentStructure\StructureObject.cs" />
     <Compile Include="Enums\PageMode.cs" />
@@ -53,7 +54,7 @@
     <Compile Include="FileStructure\Header.cs" />
     <Compile Include="DocumentStructure\OutlineTree.cs" />
     <Compile Include="DocumentStructure\PageTree.cs" />
-    <Compile Include="DocumentObjects\PDFObject.cs" />
+    <Compile Include="PDFObject.cs" />
     <Compile Include="FileStructure\XRefEntry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FileStructure\Trailer.cs" />

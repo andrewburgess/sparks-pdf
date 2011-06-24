@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using SparksPDF.DocumentStructure;
 using SparksPDF.FileStructure;
@@ -15,6 +16,8 @@ namespace SparksPDF
 		public int ObjectCount { get; set; }
 		public int CurrentBytes { get; set; }
 
+		public Info Info { get; private set; }
+
 		public Document()
 		{
 			ObjectCount = 1;
@@ -22,12 +25,18 @@ namespace SparksPDF
 			Body = new Body(this);
 			CrossReferenceTable = new CrossReferenceTable(this);
 			Trailer = new Trailer(this);
+			Info = null;
 		}
 
 		public void AddPage(Page page)
 		{
 			page.Parent = Body.Catalog.PageTree;
 			Body.Catalog.PageTree.Pages.Add(page);
+		}
+
+		public void SetDocumentInfo(Info info)
+		{
+			Info = info;
 		}
 
 		public void Write(Stream stream)
@@ -41,6 +50,12 @@ namespace SparksPDF
 
 			bytes.AddRange(Body.GetOutput());
 			CurrentBytes = bytes.Count;
+
+			if (Info != null)
+			{
+				bytes.AddRange(Info.GetOutput());
+				CurrentBytes = bytes.Count;
+			}
 
 			bytes.AddRange(CrossReferenceTable.GetOutput());
 			CurrentBytes = bytes.Count;

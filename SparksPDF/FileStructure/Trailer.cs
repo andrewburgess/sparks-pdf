@@ -30,6 +30,9 @@ namespace SparksPDF.FileStructure
 			list.AddRange(encoding.GetBytes(SIZE_KEY + " " + Document.CrossReferenceTable.Entries.Count + "\n"));
 			list.AddRange(encoding.GetBytes(ROOT_KEY + " " + Document.Body.Catalog.GetMinimalIndirectReference() + "\n"));
 
+			if (Document.Info != null)
+				list.AddRange(encoding.GetBytes(Document.Info.GetIndirectReference()));
+
 			list.AddRange(encoding.GetBytes(">>\n"));
 
 			list.AddRange(encoding.GetBytes(START_XREF_MARKER));
