@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Text;
 
-namespace SparksPDF.DocumentObjects
+namespace SparksPDF.FileStructure
 {
 	internal class Trailer
 	{
@@ -14,7 +12,14 @@ namespace SparksPDF.DocumentObjects
 		private const string SIZE_KEY = "/Size";
 		private const string ROOT_KEY = "/Root";
 
-		public List<byte> GetOutput(Document document)
+		private Document Document { get; set; }
+
+		public Trailer(Document document)
+		{
+			Document = document;
+		}
+
+		public List<byte> GetOutput()
 		{
 			var encoding = new ASCIIEncoding();
 			var list = new List<byte>();
@@ -22,13 +27,13 @@ namespace SparksPDF.DocumentObjects
 			list.AddRange(encoding.GetBytes(TRAILER_MARKER));
 			list.AddRange(encoding.GetBytes("<<\n"));
 
-			list.AddRange(encoding.GetBytes(SIZE_KEY + " " + document.CrossReferenceTable.Entries.Count + "\n"));
-			list.AddRange(encoding.GetBytes(ROOT_KEY + " " + document.Body.Catalog));
+			list.AddRange(encoding.GetBytes(SIZE_KEY + " " + Document.CrossReferenceTable.Entries.Count + "\n"));
+			list.AddRange(encoding.GetBytes(ROOT_KEY + " " + Document.Body.Catalog.GetMinimalIndirectReference() + "\n"));
 
 			list.AddRange(encoding.GetBytes(">>\n"));
 
 			list.AddRange(encoding.GetBytes(START_XREF_MARKER));
-			list.AddRange(encoding.GetBytes(document.XRefOffset + "\n"));
+			list.AddRange(encoding.GetBytes(Document.CurrentBytes + "\n"));
 
 			list.AddRange(encoding.GetBytes(EOF_MARKER));
 

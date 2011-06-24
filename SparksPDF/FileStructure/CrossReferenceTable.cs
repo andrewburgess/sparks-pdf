@@ -1,8 +1,7 @@
 using System.Collections.Generic;
-using System.IO;
 using System.Text;
 
-namespace SparksPDF.DocumentObjects
+namespace SparksPDF.FileStructure
 {
 	internal class CrossReferenceTable
 	{
@@ -10,8 +9,11 @@ namespace SparksPDF.DocumentObjects
 
 		public List<XRefEntry> Entries { get; private set; }
 
-		public CrossReferenceTable()
+		private Document Document { get; set; }
+
+		public CrossReferenceTable(Document document)
 		{
+			Document = document;
 			Entries = new List<XRefEntry>
 			          {
 			          	new XRefEntry(0, 65535, true)

@@ -1,7 +1,6 @@
-using System;
 using System.Text;
 
-namespace SparksPDF.DocumentObjects
+namespace SparksPDF.FileStructure
 {
 	internal class XRefEntry
 	{
